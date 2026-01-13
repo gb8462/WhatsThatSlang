@@ -36,14 +36,75 @@
 
     <div class="layout">
         <div class="content">
-            Your main page content here
+        
+          <!-- ===== SEARCH & FILTER ===== -->
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for a slang..." />
+            <select id="filterCategory">
+              <option value="">All Categories</option>
+              <option value="gaming">Gaming</option>
+              <option value="social">Social</option>
+              <option value="school">School</option>
+            </select>
+            <select id="filterDifficulty">
+              <option value="">All Difficulties</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+      
+          <!-- ===== SLANG LIST ===== -->
+          <div class="slang-list" id="slangList">
+            <!-- Slang cards injected by JS -->
+          </div>
+      
+          <!-- ===== ADD NEW SLANG ===== -->
+          <div class="add-slang">
+            <h3>Add a New Slang</h3>
+            <form id="addSlangForm">
+              <input type="text" name="slang" placeholder="Slang word" required />
+              <textarea name="meaning" placeholder="Meaning" required></textarea>
+              <input type="text" name="tags" placeholder="Tags (comma separated)" />
+              <select name="difficulty" required>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+              <button type="submit">Add Slang</button>
+            </form>
+          </div>
+      
         </div>
+
+        <!-- ===== EDIT MODAL ===== -->
+        <div class="modal" id="editModal">
+          <div class="modal-content">
+            <h3>Edit Slang</h3>
+            <form id="editSlangForm">
+              <input type="text" name="slang" placeholder="Slang word" readonly />
+              <textarea name="meaning" placeholder="Meaning" required></textarea>
+              <input type="text" name="tags" placeholder="Tags (comma separated)" />
+              <select name="difficulty" required>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+              <div class="modal-actions">
+                <button type="submit">Save Changes</button>
+                <button type="button" id="closeModal">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <nav class="sidebar">
           <ul>
-            <li><i class="fa-solid fa-house"></i> Home</li>
-            <li><i class="fa-solid fa-circle-info"></i> About</li>
-            <li><i class="fa-solid fa-book"></i> Slangs</li>
-            <li><i class="fa-solid fa-user"></i> Login</li>
+            <li><i class="fa-solid fa-house"></i>Home</li>
+            <li><i class="fa-solid fa-circle-info"></i>About</li>
+            <li><i class="fa-solid fa-book"></i>Slangs</li>
+            <li><i class="fa-solid fa-user"></i>Login</li>
           </ul>
         </nav>
         
