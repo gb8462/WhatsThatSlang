@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
-  const toggleBtn = document.querySelector('.sidebar-toggle'); // button to hide/show sidebar
-  const layout = document.querySelector(".layout");
+  const toggleBtn = document.getElementById("menuToggle"); // hamburger
+  const backdrop = document.createElement("div"); // overlay for clicking outside
   const checkbox = document.getElementById("themeCheckbox");
 
-  // ---------- Theme Toggle ----------
+  // ---------- THEME TOGGLE ----------
   if (checkbox) {
     if (localStorage.getItem("theme") === "dark") {
       document.documentElement.classList.add("dark");
@@ -20,19 +20,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---------- Sidebar State ----------
+  // ---------- MOBILE SIDEBAR TOGGLE ----------
   if (sidebar && toggleBtn) {
-    // Load saved state
-    if (localStorage.getItem('sidebarHidden') === 'true') {
-      sidebar.classList.add('hidden');
-      layout.classList.add('sidebar-hidden'); // optional if layout changes
-    }
+    // Add a backdrop to close sidebar when clicking outside
+    backdrop.classList.add("sidebar-backdrop");
+    document.body.appendChild(backdrop);
 
-    // Toggle sidebar on button click
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('hidden');
-      layout.classList.toggle('sidebar-hidden'); // optional
-      localStorage.setItem('sidebarHidden', sidebar.classList.contains('hidden'));
-    });
+    const toggleSidebar = () => {
+      sidebar.classList.toggle("show");
+      backdrop.style.display = sidebar.classList.contains("show") ? "block" : "none";
+    };
+
+    toggleBtn.addEventListener("click", toggleSidebar);
+
+    // Close sidebar when clicking the backdrop
+    backdrop.addEventListener("click", toggleSidebar);
   }
 });
