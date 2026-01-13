@@ -149,6 +149,68 @@ input:checked + .slider::before {
   text-align: center;
 }
 
+:root {
+  --sidebar-handle: 30px;
+}
+
+/* =========================
+   SIDEBAR CIRCLE TOGGLE
+========================= */
+.sidebar {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* circle button */
+.sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--sidebar-handle));
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #5b6cff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(91,108,255,0.35);
+  z-index: 5;
+}
+
+.dark .sidebar-toggle {
+  background: #6f7dff;
+}
+
+.sidebar-toggle i {
+  color: #ffffff;
+  font-size: 0.85rem;
+  transition: transform 0.3s;
+}
+
+/* rotate arrow when hidden */
+.sidebar.hidden .sidebar-toggle i {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   COLLAPSIBLE SIDEBAR
+========================= */
+.sidebar {
+  transition: transform 0.3s ease;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+/* content expands when sidebar is hidden */
+.layout.sidebar-hidden .content {
+  padding-left: 24px;
+}
+
 /* =========================
    CONTENT
 ========================= */
@@ -160,41 +222,63 @@ input:checked + .slider::before {
 /* =========================
    RESPONSIVE
 ========================= */
+
+/* Medium screens */
 @media (max-width: 900px) {
   .sidebar {
     width: 200px;
   }
 }
 
+/* Small screens */
 @media (max-width: 700px) {
+  /* Layout becomes vertical */
   .layout {
     flex-direction: column;
+    position: relative;
   }
 
+  /* Sidebar styling */
   .sidebar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: calc(100vh - 60px);
+    width: 240px;
+    z-index: 20;
+    background: inherit;
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
+    display: block; /* remove flex */
   }
 
+  /* Dark mode sidebar border */
   .dark .sidebar {
     border-bottom: 1px solid #24284d;
   }
 
+  /* Hide sidebar when needed */
+  .sidebar.hidden {
+    transform: translateX(-100%);
+  }
+
+  /* Sidebar list vertical */
   .sidebar ul {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
+    display: block;
+    width: auto;
+    text-align: left;
+    padding: 0;
+    margin: 0;
   }
 
+  /* Sidebar items vertical */
   .sidebar li {
-    flex-direction: column;
-    padding: 10px;
-    font-size: 0.85rem;
+    display: block;
+    padding: 10px 16px;
+    font-size: 0.9rem;
   }
 
+  /* Content spacing */
   .content {
     padding: 16px;
   }
