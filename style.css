@@ -283,10 +283,11 @@ input:checked + .slider::before {
 /* =========================
    SEARCH BAR
 ========================= */
-.search-bar {
-  display: flex;
-  margin-bottom: 20px;
-  gap: 8px;
+
+.search-bar { 
+  display: flex; 
+  margin-bottom: 20px; 
+  gap: 8px; 
 }
 
 .search-bar input {
@@ -294,13 +295,14 @@ input:checked + .slider::before {
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  transition: border 0.3s;
-  color: #111; /* input text color */
+  color: #111;
+  background: #fff;
+  transition: border 0.3s, background 0.3s, color 0.3s;
 }
 
-.search-bar input:focus {
-  outline: none;
-  border-color: #5b6cff;
+.dark .search-bar input {
+  background: #24284d;
+  color: #e6e6ee;
 }
 
 .search-bar button {
@@ -310,7 +312,12 @@ input:checked + .slider::before {
   background: #5b6cff;
   color: #fff;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dark .search-bar button {
+  background: #3f4dcc; 
+  color: #fff;
 }
 
 .search-bar button:hover {
@@ -576,6 +583,14 @@ select:focus {
 .dark select:focus {
   border-color: #5b6cff; /* keep highlight consistent */
 }
+
+/* Lighten the text in dark mode inside slang cards */
+.dark .slang-card .slang-meaning,
+.dark .slang-card .slang-tags,
+.dark .slang-card .slang-date {
+  color: #e6e6ee; /* or a softer white like #f0f0f5 */
+}
+
 /* CONTENT RESPONSIVE */
 @media (max-width: 768px) {
   .content {
