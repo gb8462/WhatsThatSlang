@@ -392,7 +392,7 @@ input:checked + .slider::before {
 .feature {
   padding: 28px;
   border-radius: 18px;
-  background: #f9faff;
+  background: #ececff;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -498,7 +498,7 @@ input:checked + .slider::before {
 }
 
 .about-feature {
-  background: #f9faff;
+  background: #ececff;
   border-radius: 18px;
   padding: 24px;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -554,7 +554,7 @@ input:checked + .slider::before {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: #dbdbff;
+  background: #ececff;
   padding: 32px 24px;
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.08);
@@ -677,7 +677,7 @@ input:checked + .slider::before {
   max-width: 100%;
   margin: 50px auto;
   text-align: center;
-  background: #dbdbff;
+  background: #ececff;
   padding: 32px 24px;
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.08);
