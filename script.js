@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.querySelector(".sidebar");
-  const toggleBtn = document.getElementById("menuToggle"); // hamburger
-  const backdrop = document.createElement("div"); // overlay for clicking outside
   const checkbox = document.getElementById("themeCheckbox");
 
   // ---------- THEME TOGGLE ----------
@@ -19,24 +16,70 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
   }
-
-  // ---------- MOBILE SIDEBAR TOGGLE ----------
-  if (sidebar && toggleBtn) {
-    // Add a backdrop to close sidebar when clicking outside
-    backdrop.classList.add("sidebar-backdrop");
-    document.body.appendChild(backdrop);
-
-    const toggleSidebar = () => {
-      sidebar.classList.toggle("show");
-      backdrop.style.display = sidebar.classList.contains("show") ? "block" : "none";
-    };
-
-    toggleBtn.addEventListener("click", toggleSidebar);
-
-    // Close sidebar when clicking the backdrop
-    backdrop.addEventListener("click", toggleSidebar);
-  }
 });
+
+
+// ========================
+// SIDEBAR NAVIGATION
+// ========================
+const sidebar = document.querySelector(".sidebar");
+const sidebarItems = document.querySelectorAll(".sidebar li");
+const sections = document.querySelectorAll(".content section");
+const menuToggle = document.getElementById("menuToggle");
+const browseBtn = document.getElementById("browseSlangsBtn");
+const slangsSection = document.getElementById("slangs");
+const backdrop = document.querySelector(".sidebar-backdrop");
+
+// Toggle sidebar (mobile)
+menuToggle?.addEventListener("click", () => {
+  sidebar.classList.toggle("show");
+});
+
+// Close sidebar when clicking outside
+backdrop?.addEventListener("click", () => {
+  sidebar.classList.remove("show");
+});
+
+// Scroll to slangs
+browseBtn?.addEventListener("click", () => {
+  slangsSection?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+});
+
+// Sidebar item click
+sidebarItems.forEach(item => {
+  item.addEventListener("click", () => {
+    const targetId = item.dataset.target;
+    const section = document.getElementById(targetId);
+
+    section?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    if (window.innerWidth <= 768) {
+      sidebar.classList.remove("show");
+    }
+  });
+});
+
+// Active state on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    sidebarItems.forEach(item => {
+      item.classList.toggle(
+        "active",
+        item.dataset.target === entry.target.id
+      );
+    });
+  });
+}, { threshold: 0.6 });
+
+sections.forEach(section => observer.observe(section));
 
 //================
 //  BASIC LOGIN
@@ -96,66 +139,3 @@ switchToLoginFromForgotBtn.addEventListener("click", () => {
   hideModal(forgotModal);
   showModal(loginModal);
 });
-
-// ========================
-// SIDEBAR NAVIGATION
-// ========================
-const sidebar = document.querySelector(".sidebar");
-const sidebarItems = document.querySelectorAll(".sidebar li");
-const sections = document.querySelectorAll(".content section");
-const menuToggle = document.getElementById("menuToggle");
-const browseBtn = document.getElementById("browseSlangsBtn");
-const slangsSection = document.getElementById("slangs");
-
-browseBtn.addEventListener("click", () => {
-  slangsSection.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-});
-
-// Toggle sidebar (mobile)
-menuToggle.addEventListener("click", () => {
-  sidebar.classList.toggle("hidden");
-});
-
-// Handle sidebar item click
-sidebarItems.forEach(item => {
-  item.addEventListener("click", () => {
-    const targetId = item.dataset.target;
-    const section = document.getElementById(targetId);
-
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-
-    // Auto close on mobile
-    if (window.innerWidth <= 768) {
-      sidebar.classList.add("hidden");
-    }
-  });
-});
-
-// Active state on scroll
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-
-      const activeId = entry.target.id;
-
-      sidebarItems.forEach(item => {
-        item.classList.toggle(
-          "active",
-          item.dataset.target === activeId
-        );
-      });
-    });
-  },
-  { threshold: 0.6 }
-);
-
-sections.forEach(section => observer.observe(section));
