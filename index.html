@@ -2,135 +2,218 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- PREVENT FLASH WITH JS -->
-    <script>
-        // Run immediately before paint
-        (function() {
-        const saved = localStorage.getItem("theme");
-        if (saved === "dark") {
-            document.documentElement.classList.add("dark");
-        }
-        })();
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="Assets/favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <title>WhatsThatSlang</title>
+
+  <!-- Prevent theme flash -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      if (saved === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="Assets/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <title>WhatsThatSlang</title>
 </head>
 
 <body>
-    <div class="topbar">
-        <div class="logo">
-          <img src="Assets/favicon.png" alt="Logo">
-          <span>WhatsThatSlang</span>
-        </div>
 
-        <div class="right-controls">
-            <div class="theme-toggle">
-                <input type="checkbox" id="themeCheckbox">
-                <label for="themeCheckbox" class="slider"></label>
-            </div>
-            <!-- Hamburger for mobile -->
-            <button class="sidebar-toggle" id="menuToggle">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo">
+      <img src="Assets/favicon.png" alt="Logo">
+      <span>WhatsThatSlang</span>
     </div>
 
-      <div class="layout">
-
-        <div class="content">
-          
-          <section id="home" class="home">
-            <div class="home-hero">
-              <span class="hero-eyebrow">Learn the language of today</span>
-              <h1>Decode <span class="highlight">Modern Slang</span> Instantly</h1>
-              <p>
-                WhatsThatSlang helps you understand internet and street slang
-                with clear meanings and real usage examples.
-              </p>
-            </div>
-          
-            <div class="home-features">
-              <div class="feature">
-                <i class="fa-solid fa-bolt"></i>
-                <h3>Fast Lookups</h3>
-                <p>Get straight to the meaning without long explanations.</p>
-              </div>
-            
-              <div class="feature">
-                <i class="fa-solid fa-globe"></i>
-                <h3>Modern & Global</h3>
-                <p>Slang from social media, gaming, and everyday conversations.</p>
-              </div>
-            
-              <div class="feature">
-                <i class="fa-solid fa-dice"></i>
-                <h3>Discover Random Slang</h3>
-                <p>Roll and explore slang you've never heard before.</p>
-              </div>
-            </div>
-          
-            <div class="home-cta">
-              <button>Browse Slangs</button>
-            </div>
-            <hr>  
-          </section>
-
-          <section id="about" class="home-about">
-            <div class="about-container">
-              <h1>About</h1>
-              <p>This site helps you understand slang through simple definitions and examples. You can also upload your own slang words, add meanings, and show how they’re used in real life.</p>
-            
-              <div class="about-features">
-                <div class="about-feature">
-                  <i class="fa-solid fa-lightbulb"></i>
-                  <h3>Learn Slang</h3>
-                  <p>Explore popular and trending slang words with easy explanations.</p>
-                </div>
-                <div class="about-feature">
-                  <i class="fa-solid fa-upload"></i>
-                  <h3>Share Yours</h3>
-                  <p>Add your own slang entries and examples to our growing dictionary.</p>
-                </div>
-                <div class="about-feature">
-                  <i class="fa-solid fa-users"></i>
-                  <h3>Join the Community</h3>
-                  <p>Interact, explore, and stay updated on the latest language trends.</p>
-                </div>
-              </div>
-              
-            </div>
-          </section>
-          <hr>  
-          <section id="slangs">
-            <h1>Slangs</h1>
-            <input type="text" id="slangSearch" placeholder="Search slangs...">
-            <div class="slang-list">
-              <!-- slang items will be inserted here dynamically -->
-            </div>
-          </section>
-          <hr>
-          <section id="random">
-            <h1>Random Slang Generator</h1>
-            <button id="rollSlang">Roll Slang</button>
-            <div id="randomResult"></div>
-          </section>
-        
-        </div>
-      
-        <nav class="sidebar">
-          <ul>
-            <li data-target="home"><i class="fa-solid fa-house"></i>Home</li>
-            <li data-target="about"><i class="fa-solid fa-circle-info"></i>About</li>
-            <li data-target="slangs"><i class="fa-solid fa-book"></i>Slangs</li>
-            <li data-target="random"><i class="fa-solid fa-dice"></i>RandomSlang</li>
-          </ul>
-        </nav>
+    <div class="right-controls">
+      <div class="theme-toggle">
+        <input type="checkbox" id="themeCheckbox">
+        <label for="themeCheckbox" class="slider"></label>
       </div>
-        
+
+      <button class="user-btn" id="loginBtn">
+        <i class="fa-solid fa-user"></i>
+      </button>
+
+      <button class="sidebar-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- HOME -->
+      <section id="home" class="home">
+        <div class="home-hero">
+          <span class="hero-eyebrow">Learn the language of today</span>
+          <h1>
+            Decode <span class="highlight">Modern Slang</span> Instantly
+          </h1>
+          <p>
+            WhatsThatSlang helps you understand internet and street slang
+            with clear meanings and real usage examples.
+          </p>
+        </div>
+
+        <div class="home-features">
+          <div class="feature">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Fast Lookups</h3>
+            <p>Get straight to the meaning without long explanations.</p>
+          </div>
+
+          <div class="feature">
+            <i class="fa-solid fa-globe"></i>
+            <h3>Modern & Global</h3>
+            <p>Slang from social media, gaming, and everyday conversations.</p>
+          </div>
+
+          <div class="feature">
+            <i class="fa-solid fa-dice"></i>
+            <h3>Discover Random Slang</h3>
+            <p>Roll and explore slang you've never heard before.</p>
+          </div>
+        </div>
+
+        <div class="home-cta">
+          <button>Browse Slangs</button>
+        </div>
+      </section>
+      
+      <hr>
+
+      <!-- ABOUT -->
+      <section id="about" class="home-about">
+        <div class="about-container">
+          <h1>About</h1>
+          <p>
+            This site helps you understand slang through simple definitions
+            and examples. You can also upload your own slang words, add meanings,
+            and show how they're used in real life.
+          </p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <i class="fa-solid fa-lightbulb"></i>
+              <h3>Learn Slang</h3>
+              <p>Explore popular and trending slang words with easy explanations.</p>
+            </div>
+
+            <div class="about-feature">
+              <i class="fa-solid fa-upload"></i>
+              <h3>Share Yours</h3>
+              <p>Add your own slang entries and examples to our growing dictionary.</p>
+            </div>
+
+            <div class="about-feature">
+              <i class="fa-solid fa-users"></i>
+              <h3>Join the Community</h3>
+              <p>Interact, explore, and stay updated on the latest language trends.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- SLANGS -->
+      <section id="slangs">
+        <h1>Slangs</h1>
+        <input type="text" id="slangSearch" placeholder="Search slangs...">
+        <div class="slang-list">
+          <!-- slang items injected here -->
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- CREATE SLANG -->
+      <section id="create" class="create-slang">
+        <h1>Create a New Slang</h1>
+        <p class="section-desc">
+          Share a slang you know and help others understand how it's used.
+        </p>
+
+        <form class="slang-form">
+          <div class="form-group">
+            <label>Slang</label>
+            <input type="text" placeholder="e.g. Bet">
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea placeholder="What does it mean?"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>How it's used</label>
+            <textarea placeholder="Example sentence or usage"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Community / Origin</label>
+            <input type="text" placeholder="e.g. Gen Z, Gaming, Twitter">
+          </div>
+
+          <div class="form-group">
+            <label>Background</label>
+            <textarea placeholder="Where did this slang come from?"></textarea>
+          </div>
+
+          <button type="submit">Submit Slang</button>
+        </form>
+      </section>
+
+      <hr>
+
+      <!-- RANDOM -->
+      <section id="random">
+        <h1>Random Slang Generator</h1>
+        <button id="rollSlang">Roll Slang</button>
+        <div id="randomResult"></div>
+      </section>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <ul>
+        <li data-target="home"><i class="fa-solid fa-house"></i>Home</li>
+        <li data-target="about"><i class="fa-solid fa-circle-info"></i>About</li>
+        <li data-target="slangs"><i class="fa-solid fa-book"></i>Slangs</li>
+        <li data-target="create"><i class="fa-solid fa-pen"></i>Create Slang</li>
+        <li data-target="random"><i class="fa-solid fa-dice"></i>RandomSlang</li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="login-modal" id="loginModal">
+    <div class="login-card">
+      <h2>Login</h2>
+      <p>Log in to create and submit slangs.</p>
+
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+
+      <button class="login-submit">Login</button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
-
 </html>

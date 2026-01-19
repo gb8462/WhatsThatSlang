@@ -39,5 +39,72 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //================
-//  MAIN CONTENT
+//  BASIC LOGIN
 //================
+
+const loginBtn = document.getElementById("loginBtn");
+const loginModal = document.getElementById("loginModal");
+
+loginBtn.addEventListener("click", () => {
+  loginModal.style.display = "flex";
+});
+
+loginModal.addEventListener("click", e => {
+  if (e.target === loginModal) {
+    loginModal.style.display = "none";
+  }
+});
+
+// ========================
+// SIDEBAR NAVIGATION
+// ========================
+const sidebar = document.querySelector(".sidebar");
+const sidebarItems = document.querySelectorAll(".sidebar li");
+const sections = document.querySelectorAll(".content section");
+const menuToggle = document.getElementById("menuToggle");
+
+// Toggle sidebar (mobile)
+menuToggle.addEventListener("click", () => {
+  sidebar.classList.toggle("hidden");
+});
+
+// Handle sidebar item click
+sidebarItems.forEach(item => {
+  item.addEventListener("click", () => {
+    const targetId = item.dataset.target;
+    const section = document.getElementById(targetId);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    // Auto close on mobile
+    if (window.innerWidth <= 768) {
+      sidebar.classList.add("hidden");
+    }
+  });
+});
+
+// Active state on scroll
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const activeId = entry.target.id;
+
+      sidebarItems.forEach(item => {
+        item.classList.toggle(
+          "active",
+          item.dataset.target === activeId
+        );
+      });
+    });
+  },
+  { threshold: 0.6 }
+);
+
+sections.forEach(section => observer.observe(section));

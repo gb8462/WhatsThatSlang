@@ -150,6 +150,74 @@ input:checked + .slider::before {
 }
 
 /* =========================
+   User BUTTON
+========================= */
+.user-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #333;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.user-btn:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+.dark .user-btn {
+  color: #f0f0f5;
+}
+
+.dark .user-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.login-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.login-card {
+  background: #fff;
+  padding: 32px;
+  border-radius: 18px;
+  width: 320px;
+  text-align: center;
+}
+
+.dark .login-card {
+  background: #1f2447;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.login-submit {
+  margin-top: 18px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 999px;
+  border: none;
+  background: #5b6cff;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================
    HAMBURGER BUTTON
 ========================= */
 .sidebar-toggle {
@@ -244,6 +312,23 @@ input:checked + .slider::before {
   text-align: center;
 }
 
+.sidebar li.active {
+  background: rgba(91, 108, 255, 0.15);
+  color: #5b6cff;
+}
+
+.sidebar li.active i {
+  color: #5b6cff;
+}
+
+.sidebar {
+  transition: transform 0.3s;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
 /* =========================
    SIDEBAR BACKDROP (MOBILE)
 ========================= */
@@ -303,6 +388,11 @@ input:checked + .slider::before {
   box-shadow: 0 2px 12px rgba(0,0,0,0.4);
   color: white;
 }
+
+section {
+  scroll-margin-top: 80px;
+}
+
 /* =========================
    CONTENT AREA
 ========================= */
@@ -428,6 +518,7 @@ input:checked + .slider::before {
 .home-cta button {
   user-select: none;
   padding: 14px 32px;
+  margin-bottom: 50px;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 999px;
@@ -467,7 +558,7 @@ input:checked + .slider::before {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px 20px;  
-  margin-top: 50px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -668,6 +759,71 @@ input:checked + .slider::before {
 .slang-item:last-child {
   margin-bottom: 0;
 }
+
+/* =========================
+   CREATE SLANG
+========================= */
+.create-slang {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.section-desc {
+  margin-bottom: 32px;
+  color: #666;
+}
+
+.dark .section-desc {
+  color: #b8b8c8;
+}
+
+.slang-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.dark .form-group input,
+.dark .form-group textarea {
+  background: #1f2447;
+  border-color: #2c3160;
+  color: #f0f0f5;
+}
+
+.slang-form button {
+  margin-top: 12px;
+  align-self: flex-start;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: none;
+  background: #5b6cff;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 
 /* =========================
      RANDOM SLANG GENERATOR
