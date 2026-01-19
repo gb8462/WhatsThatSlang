@@ -21,9 +21,12 @@
 
 <body>
     <div class="topbar">
-        <div class="logo">WhatsThatSlang</div>
-        <div class="right-controls">
+        <div class="logo">
+          <img src="Assets/favicon.png" alt="Logo">
+          <span>WhatsThatSlang</span>
+        </div>
 
+        <div class="right-controls">
             <div class="theme-toggle">
                 <input type="checkbox" id="themeCheckbox">
                 <label for="themeCheckbox" class="slider"></label>
@@ -35,81 +38,97 @@
         </div>
     </div>
 
-    <div class="layout">
+      <div class="layout">
+
         <div class="content">
-        
-          <!-- ===== SEARCH & FILTER ===== -->
-          <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search for a slang..." />
-            <select id="filterCategory">
-              <option value="">All Categories</option>
-              <option value="gaming">Gaming</option>
-              <option value="social">Social</option>
-              <option value="school">School</option>
-            </select>
-            <select id="filterDifficulty">
-              <option value="">All Difficulties</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-            <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </div>
-      
-          <!-- ===== SLANG LIST ===== -->
-          <div class="slang-list" id="slangList">
-            <!-- Slang cards injected by JS -->
-          </div>
-      
-          <!-- ===== ADD NEW SLANG ===== -->
-          <div class="add-slang">
-            <h3>Add a New Slang</h3>
-            <form id="addSlangForm">
-              <input type="text" name="slang" placeholder="Slang word" required />
-              <textarea name="meaning" placeholder="Meaning" required></textarea>
-              <input type="text" name="tags" placeholder="Tags (comma separated)" />
-              <select name="difficulty" required>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-              <button type="submit">Add Slang</button>
-            </form>
-          </div>
-      
-        </div>
-
-        <!-- ===== EDIT MODAL ===== -->
-        <div class="modal" id="editModal">
-          <div class="modal-content">
-            <h3>Edit Slang</h3>
-            <form id="editSlangForm">
-              <input type="text" name="slang" placeholder="Slang word" readonly />
-              <textarea name="meaning" placeholder="Meaning" required></textarea>
-              <input type="text" name="tags" placeholder="Tags (comma separated)" />
-              <select name="difficulty" required>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-              <div class="modal-actions">
-                <button type="submit">Save Changes</button>
-                <button type="button" id="closeModal">Cancel</button>
+          
+          <section id="home" class="home">
+            <div class="home-hero">
+              <span class="hero-eyebrow">Learn the language of today</span>
+              <h1>Decode <span class="highlight">Modern Slang</span> Instantly</h1>
+              <p>
+                WhatsThatSlang helps you understand internet and street slang
+                with clear meanings and real usage examples.
+              </p>
+            </div>
+          
+            <div class="home-features">
+              <div class="feature">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Fast Lookups</h3>
+                <p>Get straight to the meaning without long explanations.</p>
               </div>
-            </form>
-          </div>
-        </div>
+            
+              <div class="feature">
+                <i class="fa-solid fa-globe"></i>
+                <h3>Modern & Global</h3>
+                <p>Slang from social media, gaming, and everyday conversations.</p>
+              </div>
+            
+              <div class="feature">
+                <i class="fa-solid fa-dice"></i>
+                <h3>Discover Random Slang</h3>
+                <p>Roll and explore slang you've never heard before.</p>
+              </div>
+            </div>
+          
+            <div class="home-cta">
+              <button>Browse Slangs</button>
+            </div>
+            <hr>  
+          </section>
 
+          <section id="about" class="home-about">
+            <div class="about-container">
+              <h1>About</h1>
+              <p>This site helps you understand slang through simple definitions and examples. You can also upload your own slang words, add meanings, and show how they’re used in real life.</p>
+            
+              <div class="about-features">
+                <div class="about-feature">
+                  <i class="fa-solid fa-lightbulb"></i>
+                  <h3>Learn Slang</h3>
+                  <p>Explore popular and trending slang words with easy explanations.</p>
+                </div>
+                <div class="about-feature">
+                  <i class="fa-solid fa-upload"></i>
+                  <h3>Share Yours</h3>
+                  <p>Add your own slang entries and examples to our growing dictionary.</p>
+                </div>
+                <div class="about-feature">
+                  <i class="fa-solid fa-users"></i>
+                  <h3>Join the Community</h3>
+                  <p>Interact, explore, and stay updated on the latest language trends.</p>
+                </div>
+              </div>
+              
+            </div>
+          </section>
+          <hr>  
+          <section id="slangs">
+            <h1>Slangs</h1>
+            <input type="text" id="slangSearch" placeholder="Search slangs...">
+            <div class="slang-list">
+              <!-- slang items will be inserted here dynamically -->
+            </div>
+          </section>
+        
+          <section id="random">
+            <h1>Random Slang Generator</h1>
+            <button id="rollSlang">Roll Slang</button>
+            <div id="randomResult"></div>
+          </section>
+        
+        </div>
+      
         <nav class="sidebar">
           <ul>
-            <li><i class="fa-solid fa-house"></i>Home</li>
-            <li><i class="fa-solid fa-circle-info"></i>About</li>
-            <li><i class="fa-solid fa-book"></i>Slangs</li>
-            <li><i class="fa-solid fa-user"></i>Login</li>
+            <li data-target="home"><i class="fa-solid fa-house"></i>Home</li>
+            <li data-target="about"><i class="fa-solid fa-circle-info"></i>About</li>
+            <li data-target="slangs"><i class="fa-solid fa-book"></i>Slangs</li>
+            <li data-target="random"><i class="fa-solid fa-dice"></i>RandomSlang</li>
           </ul>
         </nav>
-        
-    </div>
+      </div>
         
   <script src="script.js"></script>
 </body>

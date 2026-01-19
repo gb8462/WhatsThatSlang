@@ -44,13 +44,48 @@ body {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.4rem;
   font-weight: 700;
   color: #111;
 }
 
+.logo img {
+  width: 50px;
+  object-fit: contain;
+}
+
 .dark .logo {
   color: #f0f0f5;
+}
+/* =========================
+   RESPONSIVE LOGO
+========================= */
+
+/* tablets and below */
+@media (max-width: 768px) {
+  .logo {
+    gap: 8px;
+    font-size: 1.15rem;
+  }
+
+  .logo img {
+    width: 40px;
+  }
+}
+
+/* small phones */
+@media (max-width: 480px) {
+  .logo {
+    gap: 6px;
+    font-size: 1rem;
+  }
+
+  .logo img {
+    width: 32px;
+  }
 }
 
 /* =========================
@@ -144,7 +179,7 @@ input:checked + .slider::before {
   }
 
   .theme-toggle {
-    display: flex; /* keep visible on mobile */
+    display: flex;
   }
 }
 
@@ -168,6 +203,10 @@ input:checked + .slider::before {
   border-left: 1px solid #e5e7eb;
   flex-shrink: 0;
   transition: background 0.3s, border 0.3s;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .dark .sidebar {
@@ -281,360 +320,432 @@ input:checked + .slider::before {
 }
 
 /* =========================
-   SEARCH BAR
+   HOME SECTION
 ========================= */
-
-.search-bar { 
-  display: flex; 
-  margin-bottom: 20px; 
-  gap: 8px; 
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  color: #111;
-  background: #fff;
-  transition: border 0.3s, background 0.3s, color 0.3s;
-}
-
-.dark .search-bar input {
-  background: #24284d;
-  color: #e6e6ee;
-}
-
-.search-bar button {
-  padding: 10px 14px;
-  border: none;
-  border-radius: 8px;
-  background: #5b6cff;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-.dark .search-bar button {
-  background: #3f4dcc; 
-  color: #fff;
-}
-
-.search-bar button:hover {
-  background: #3f4dcc;
+.home {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 /* =========================
-   SLANG LIST & CARDS
+   HERO
 ========================= */
-.slang-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.home-hero {
+  max-width: 700px;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 
-.slang-card {
-  background: #fff;
-  color: #111;
-  padding: 16px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  transition: transform 0.2s, background 0.3s, color 0.3s, box-shadow 0.3s;
+.home-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
 }
 
-.slang-card:hover {
-  transform: translateY(-2px);
-}
-
-.dark .slang-card {
-  background: #1c1f38;
-  color: #e6e6ee;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-}
-
-.slang-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.slang-header h3 {
-  margin: 0;
-}
-
-.actions button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: 6px;
-  font-size: 1rem;
-  color: #5b6cff;
-  transition: color 0.2s;
-}
-
-.actions button:hover {
-  color: #3f4dcc;
-}
-
-.slang-meaning,
-.slang-tags {
-  margin: 6px 0;
+.home-hero p {
+  font-size: 1.15rem;
+  line-height: 1.7;
   color: #555;
 }
 
-.slang-difficulty {
+.dark .home-hero p {
+  color: #c9c9d6;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
   font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  background: #e5e7eb;
-  color: #111;
-}
-
-.dark .slang-difficulty {
-  background: #24284d;
-  color: #e6e6ee;
-}
-
-.slang-date {
-  font-size: 0.8rem;
-  color: #999;
-}
-
-/* =========================
-   ADD / EDIT SLANG FORM
-========================= */
-.add-slang {
-  margin-top: 30px;
-}
-
-.add-slang h3 {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5b6cff;
   margin-bottom: 12px;
 }
 
-.add-slang form {
+.hero-sub {
+  margin-top: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.dark .hero-sub {
+  color: #b8b8c8;
+}
+
+/* =========================
+   FEATURES
+========================= */
+.home-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  user-select: none;
+  padding-bottom: 10px;
+  gap: 24px;
+}
+
+.feature {
+  padding: 28px;
+  border-radius: 18px;
+  background: #f9faff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+}
+
+.dark .feature {
+  background: #1f2447;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+
+.feature i {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #5b6cff;
+}
+
+.feature h3 {
+  margin-bottom: 6px;
+}
+
+/* =========================
+   CTA
+========================= */
+.home-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.home-cta button {
+  user-select: none;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  background: #5b6cff;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.home-cta button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(91,108,255,0.35);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .home-features {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero {
+    padding-top: 32px;
+    text-align: center;
+  }
+
+  .home-hero h1 {
+    font-size: 2rem;
+  }
+}
+/* =========================
+   ABOUT
+========================= */
+.home-about {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;  
+  margin-top: 50px;
+  text-align: center;
+}
+
+.home-about h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.home-about p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 32px;
+}
+
+.dark .home-about p {
+  color: #c9c9d6;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: center;
+  user-select: none;
+  margin-bottom: 50px;
+}
+
+.about-feature {
+  background: #f9faff;
+  border-radius: 18px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.about-feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+}
+
+.dark .about-feature {
+  background: #1f2447;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+
+.about-feature i {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #5b6cff;
+}
+
+.about-feature h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.about-feature p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.dark .about-feature p {
+  color: #b8b8c8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-features {
+    grid-template-columns: 1fr;
+  }
+
+  .home-about h1 {
+    font-size: 2rem;
+  }
+}
+/* =========================
+          Slangs
+========================= */
+#slangs {
+  max-width: 850px;
+  margin: 40px auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
+  background: #f1f1ff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-.add-slang input,
-.add-slang textarea,
-.add-slang select {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  color: #111;
-  transition: border 0.3s, background 0.3s, color 0.3s;
+.dark #slangs {
+  background: #1f2447;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
 }
 
-.add-slang input:focus,
-.add-slang textarea:focus,
-.add-slang select:focus {
-  outline: none;
-  border-color: #5b6cff;
+#slangs h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  color: #333;
+  letter-spacing: 1px;
+  transition: color 0.3s;
 }
 
-.add-slang button {
-  padding: 10px 14px;
-  border: none;
-  border-radius: 8px;
-  background: #5b6cff;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s;
+.dark #slangs h1 {
+  color: #e6e6f0;
 }
 
-.add-slang button:hover {
-  background: #3f4dcc;
-}
-
-/* =========================
-   MODAL
-========================= */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
-
-.modal.show {
-  display: flex;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 24px;
+#slangs input {
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
   border-radius: 12px;
-  max-width: 400px;
   width: 100%;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  transition: background 0.3s, color 0.3s;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  background: #fff;
+  color: #222;
 }
 
-.dark .modal-content {
-  background: #1c1f38;
-  color: #e6e6ee;
+.dark #slangs input {
+  background: #2b2f4b;
+  color: #e6e6f0;
+  border-color: #444;
 }
 
-.modal-actions {
+#slangs input:focus {
+  border-color: #141320;
+  box-shadow: 0 0 10px rgba(108, 99, 255, 0.3);
+  outline: none;
+}
+
+.slang-list {
+  margin-top: 16px;
+  height: 300px;
+  overflow-y: auto;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: left;
+  background: #fafafa;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.dark .slang-list {
+  background: #2b2f4b;
+  border-color: #444;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.slang-list:hover {
+  border-color: #161333;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.slang-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.slang-list::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 6px;
+}
+
+.dark .slang-list::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
+.slang-item {
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background: #fff;
+  color: #222;
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.dark .slang-item {
+  background: #2f334d;
+  border-color: #444;
+  color: #e6e6f0;
+}
+
+.slang-item:hover {
+  background: #f0f0ff;
+  border-color: #6c63ff;
+}
+
+.dark .slang-item:hover {
+  background: #3b3f63;
+  border-color: #6c63ff;
+}
+
+.slang-item:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+     RANDOM SLANG GENERATOR
+========================= */
+
+#random {
+  max-width: 100%;
+  margin: 50px auto;
+  text-align: center;
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 12px;
+  flex-direction: column;
+  gap: 20px;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-.modal-actions button {
-  padding: 8px 14px;
-  border-radius: 8px;
+.dark #random {
+  background: #1f2447;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+#random h1 {
+  font-size: 2rem;
+  color: #333;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.dark #random h1 {
+  color: #e6e6f0;
+}
+
+#rollSlang {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
   border: none;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-.modal-actions button[type="submit"] {
   background: #5b6cff;
   color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
 }
 
-.modal-actions button#closeModal {
-  background: #e5e7eb;
-  color: #111;
+#rollSlang:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(91,108,255,0.35);
 }
 
-.dark .modal-actions button#closeModal {
-  background: #24284d;
-  color: #e6e6ee;
-}
-/* =========================
-   MODAL FORM INPUTS
-========================= */
-.modal-content input,
-.modal-content textarea,
-.modal-content select {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  color: #111; /* light mode text */
-  background: #fff; /* light mode background */
-  transition: background 0.3s, color 0.3s, border 0.3s;
+.dark #rollSlang {
+  background: #7a80ff;
 }
 
-.modal-content input:focus,
-.modal-content textarea:focus,
-.modal-content select:focus {
-  outline: none;
-  border-color: #5b6cff;
+#rollSlang:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(91,108,255,0.25);
 }
 
-/* Dark mode inputs inside modal */
-.dark .modal-content input,
-.dark .modal-content textarea,
-.dark .modal-content select {
-  background: #24284d;
-  color: #e6e6ee;
-  border: 1px solid #3a3f5c;
+#randomResult {
+  margin-top: 12px;
+  padding: 16px 12px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  background: #fafafa;
+  border: 2px solid #eee;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 
-.dark .modal-content input:focus,
-.dark .modal-content textarea:focus,
-.dark .modal-content select:focus {
-  border-color: #5b6cff;
-}
-/* =========================
-   FORM INPUTS / TEXTAREAS / SELECTS
-========================= */
-input,
-textarea,
-select {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  color: #111; /* text color in light mode */
-  background: #fff; /* light mode background */
-  transition: background 0.3s, color 0.3s, border 0.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: #5b6cff;
-}
-
-/* Dark mode input background and text */
-.dark input,
-.dark textarea,
-.dark select {
-  background: #24284d; /* dark background */
-  color: #e6e6ee; /* light text */
-  border: 1px solid #3a3f5c;
-}
-
-.dark input:focus,
-.dark textarea:focus,
-.dark select:focus {
-  border-color: #5b6cff; /* keep highlight consistent */
-}
-
-/* Lighten the text in dark mode inside slang cards */
-.dark .slang-card .slang-meaning,
-.dark .slang-card .slang-tags,
-.dark .slang-card .slang-date {
-  color: #e6e6ee; /* or a softer white like #f0f0f5 */
-}
-
-/* CONTENT RESPONSIVE */
-@media (max-width: 768px) {
-  .content {
-    padding: 16px;
-    margin: 0;
-    box-shadow: none; /* optional: remove shadow to save space */
-  }
-
-  .search-bar {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .search-bar button {
-    width: 100%; /* full width under the input */
-  }
-
-  .add-slang form {
-    gap: 8px;
-  }
-
-  .add-slang input,
-  .add-slang textarea,
-  .add-slang select,
-  .search-bar input {
-    width: 100%;
-  }
-
-  .slang-card {
-    padding: 12px;
-  }
-
-  .modal-content {
-    max-width: 90%; /* fits smaller screens */
-  }
-}
-@media (max-width: 768px) {
-  .search-bar {
-    flex-direction: column;
-  }
-}
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 16px;
-    max-width: 95%;
-  }
+.dark #randomResult {
+  background: #2b2f4b;
+  border-color: #444;
+  color: #e6e6f0;
 }
