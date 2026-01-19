@@ -89,10 +89,10 @@
         </div>
 
         <div class="home-cta">
-          <button>Browse Slangs</button>
+          <button id="browseSlangsBtn">Browse Slangs</button>
         </div>
       </section>
-      
+
       <hr>
 
       <!-- ABOUT -->
@@ -204,13 +204,67 @@
   <!-- LOGIN MODAL -->
   <div class="login-modal" id="loginModal">
     <div class="login-card">
-      <h2>Login</h2>
-      <p>Log in to create and submit slangs.</p>
+      <h2 id="authTitle">Login</h2>
+      <p id="authDesc">Log in to create and submit slangs.</p>
 
-      <input type="email" placeholder="Email">
-      <input type="password" placeholder="Password">
+      <button class="google-btn">
+        <i class="fa-brands fa-google"></i>
+        Continue with Google
+      </button>
 
-      <button class="login-submit">Login</button>
+      <div class="divider">or</div>
+
+      <input type="email" id="emailLogin" placeholder="Email">
+      <input type="password" id="passwordLogin" placeholder="Password">
+
+      <button class="login-submit" id="authSubmitLogin">Login</button>
+
+      <div class="auth-links">
+        <span id="forgotPasswordBtn">Forgot password?</span>
+        <span id="switchToSignupBtn">Create an account</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div class="login-modal" id="signupModal">
+    <div class="login-card">
+      <h2>Sign Up</h2>
+      <p>Create an account to start submitting slangs.</p>
+    
+      <button class="google-btn">
+        <i class="fa-brands fa-google"></i>
+        Continue with Google
+      </button>
+    
+      <div class="divider">or</div>
+    
+      <input type="text" id="nameSignup" placeholder="Full Name">
+      <input type="email" id="emailSignup" placeholder="Email">
+      <input type="password" id="passwordSignup" placeholder="Password">
+      <input type="password" id="confirmPasswordSignup" placeholder="Confirm Password">
+    
+      <button class="login-submit" id="authSubmitSignup">Sign Up</button>
+    
+      <div class="auth-links">
+        <span id="switchToLoginBtn">Already have an account?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="login-modal" id="forgotModal">
+    <div class="login-card">
+      <h2>Reset Password</h2>
+      <p>Enter your email to receive a password reset link.</p>
+
+      <input type="email" id="emailForgot" placeholder="Email">
+
+      <button class="login-submit" id="authSubmitForgot">Send Reset Link</button>
+
+      <div class="auth-links">
+        <span id="switchToLoginFromForgotBtn">Back to Login</span>
+      </div>
     </div>
   </div>
 

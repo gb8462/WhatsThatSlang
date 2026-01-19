@@ -55,6 +55,48 @@ loginModal.addEventListener("click", e => {
   }
 });
 
+//================
+//    MODALS
+//================
+const signupModal = document.getElementById("signupModal");
+const forgotModal = document.getElementById("forgotModal");
+
+// Buttons
+const switchToSignupBtn = document.getElementById("switchToSignupBtn");
+const switchToLoginBtn = document.getElementById("switchToLoginBtn");
+const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
+const switchToLoginFromForgotBtn = document.getElementById("switchToLoginFromForgotBtn");
+
+// Show/Hide functions
+function showModal(modal) {
+  modal.style.display = "flex";
+}
+
+function hideModal(modal) {
+  modal.style.display = "none";
+}
+
+// Switch between modals
+switchToSignupBtn.addEventListener("click", () => {
+  hideModal(loginModal);
+  showModal(signupModal);
+});
+
+switchToLoginBtn?.addEventListener("click", () => {
+  hideModal(signupModal);
+  showModal(loginModal);
+});
+
+forgotPasswordBtn.addEventListener("click", () => {
+  hideModal(loginModal);
+  showModal(forgotModal);
+});
+
+switchToLoginFromForgotBtn.addEventListener("click", () => {
+  hideModal(forgotModal);
+  showModal(loginModal);
+});
+
 // ========================
 // SIDEBAR NAVIGATION
 // ========================
@@ -62,6 +104,15 @@ const sidebar = document.querySelector(".sidebar");
 const sidebarItems = document.querySelectorAll(".sidebar li");
 const sections = document.querySelectorAll(".content section");
 const menuToggle = document.getElementById("menuToggle");
+const browseBtn = document.getElementById("browseSlangsBtn");
+const slangsSection = document.getElementById("slangs");
+
+browseBtn.addEventListener("click", () => {
+  slangsSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
 
 // Toggle sidebar (mobile)
 menuToggle.addEventListener("click", () => {
