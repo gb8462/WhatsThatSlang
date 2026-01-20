@@ -62,6 +62,37 @@ function showToast(message, type = "info") {
 }
 
 /* ======================
+   CONFIRM TOAST
+===================== */
+function showConfirmToast(message, onConfirm, onCancel) {
+  const container = document.getElementById("toast-container");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = "toast warning confirm-toast";
+  toast.innerHTML = `
+    <div class="message">${message}</div>
+    <div class="actions">
+      <button class="btn btn-confirm">Overwrite</button>
+      <button class="btn btn-cancel">Cancel</button>
+    </div>
+  `;
+
+  container.appendChild(toast);
+
+  // Handle clicks
+  toast.querySelector(".btn-confirm").addEventListener("click", () => {
+    if (typeof onConfirm === "function") onConfirm();
+    toast.remove();
+  });
+
+  toast.querySelector(".btn-cancel").addEventListener("click", () => {
+    if (typeof onCancel === "function") onCancel();
+    toast.remove();
+  });
+}
+
+/* ======================
    HELPERS
 ====================== */
 function closeAllModals() {
@@ -107,8 +138,9 @@ loadSlangs();
 /* ======================
    CREATE SLANG
 ===================== */
-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+/* Form submit handler */
 slangForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -117,42 +149,54 @@ slangForm?.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Grab input values
-  const [wordInput, descriptionInput, usageInput, originInput, backgroundInput] =
+  const [wordInput, descInput, usageInput, originInput, bgInput] =
     slangForm.querySelectorAll("input, textarea");
 
   const word = wordInput.value.trim();
-  const description = descriptionInput.value.trim();
+  const description = descInput.value.trim();
   const usage = usageInput.value.trim();
   const origin = originInput.value.trim();
-  const background = backgroundInput.value.trim();
+  const background = bgInput.value.trim();
 
   if (!word || !description) {
     showToast("Slang and description are required", "error");
     return;
   }
 
+  const wordId = word.toLowerCase();
+  const docRef = doc(db, "slangs", wordId);
+
   try {
-    // Normalize word for document ID
-    const wordId = word.toLowerCase();
+    const existingSnap = await getDoc(docRef);
 
-    // Reference to the document (deterministic ID)
-    const docRef = doc(db, "slangs", wordId);
-
-    // Check if slang already exists
-    const existingSnap = await getDocs(
-      query(collection(db, "slangs"), where("wordLower", "==", wordId))
-    );
-
-    if (!existingSnap.empty) {
-      showToast(`Slang "${word}" already exists!`, "error");
-      return;
+    if (existingSnap.exists()) {
+      // Slang exists — ask user to overwrite
+      showConfirmToast(
+        `Slang "${word}" already exists!`,
+        async () => {
+          await setDoc(docRef, {
+            word,
+            wordLower: wordId,
+            description,
+            usage,
+            origin,
+            background,
+            author: auth.currentUser.displayName || "Anonymous",
+            createdAt: Date.now()
+          });
+          showToast("Slang updated!", "success");
+          slangForm.reset();
+          loadSlangs();
+        },
+        () => showToast("Cancelled", "info")
+      );
+      return; // stop until user chooses
     }
 
-    // Add new slang — no merging, no overwrites
+    // Slang doesn't exist — create new
     await setDoc(docRef, {
       word,
-      wordLower: wordId, // for future duplicate checks
+      wordLower: wordId,
       description,
       usage,
       origin,
@@ -163,7 +207,7 @@ slangForm?.addEventListener("submit", async (e) => {
 
     showToast("Slang submitted!", "success");
     slangForm.reset();
-    loadSlangs(); // reload the slang list
+    loadSlangs();
   } catch (err) {
     console.error("Error submitting slang:", err);
     showToast("Failed to submit slang", "error");
