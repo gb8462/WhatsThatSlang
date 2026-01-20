@@ -39,7 +39,7 @@
         <label for="themeCheckbox" class="slider"></label>
       </div>
 
-      <button class="user-btn" id="loginBtn">
+      <button class="user-btn" id="loginBtn", hidden>
         <i class="fa-solid fa-user"></i>
       </button>
 
@@ -183,7 +183,7 @@
       <section id="random">
         <h1>Random Slang Generator</h1>
         <button id="rollSlang">Roll Slang</button>
-        <div id="randomResult"></div>
+        <div id="randomResult"> </div>
       </section>
 
     </div>
@@ -197,8 +197,19 @@
         <li data-target="create"><i class="fa-solid fa-pen"></i>Create Slang</li>
         <li data-target="random"><i class="fa-solid fa-dice"></i>RandomSlang</li>
       </ul>
+      <div class="sidebar-footer">
+        <div class="avatar">G</div>
+
+        <div class="user-info">
+          <span class="user-name">Guest</span>
+          <span class="user-status">Not signed in</span>
+        </div>
+      
+        <button id="authActionBtn">Login</button>
+      </div>
+
     </nav>
-    
+
     <div class="sidebar-backdrop"></div>
 
   </div>
@@ -217,7 +228,10 @@
       <div class="divider">or</div>
 
       <input type="email" id="emailLogin" placeholder="Email">
-      <input type="password" id="passwordLogin" placeholder="Password">
+      <div class="password-field">
+        <input type="password" id="passwordLogin" placeholder="Password">
+        <i id="eye" class="fa-solid fa-eye toggle-password"></i>
+      </div>
 
       <button class="login-submit" id="authSubmitLogin">Login</button>
 
@@ -243,8 +257,15 @@
 
       <input type="text" id="nameSignup" placeholder="Full Name">
       <input type="email" id="emailSignup" placeholder="Email">
-      <input type="password" id="passwordSignup" placeholder="Password">
-      <input type="password" id="confirmPasswordSignup" placeholder="Confirm Password">
+      <div class="password-field">
+        <input type="password" id="passwordSignup" placeholder="Password">
+        <i class="fa-solid fa-eye toggle-password"></i>
+      </div>
+  
+      <div class="password-field">
+        <input type="password" id="confirmPasswordSignup" placeholder="Confirm Password">
+        <i class="fa-solid fa-eye toggle-password"></i>
+      </div>
 
       <button class="login-submit" id="authSubmitSignup">Sign Up</button>
 
@@ -270,6 +291,10 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <div id="toast-container"></div>
+
+  <script type="module" src="config/auth.js"></script>
+  <script type="module" src="config/firebase.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
