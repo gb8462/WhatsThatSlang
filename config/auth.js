@@ -121,19 +121,50 @@ async function loadSlangs() {
   const snapshot = await getDocs(q);
 
   snapshot.forEach(doc => {
-    const { word, description, origin, author } = doc.data();
+    const data = doc.data();
 
     slangList.insertAdjacentHTML("beforeend", `
-      <div class="slang-item">
-        <h3>${word}</h3>
-        <p>${description}</p>
-        <small>${origin || "Unknown"} • by ${author || "Anonymous"}</small>
+      <div class="slang-item"
+        data-word="${data.word}"
+        data-description="${data.description}"
+        data-usage="${data.usage || "—"}"
+        data-origin="${data.origin || "Unknown"}"
+        data-background="${data.background || "—"}"
+        data-author="${data.author || "Anonymous"}"
+      >
+        <h3>${data.word}</h3>
+        <p>${data.description}</p>
+        <small>${data.origin || "Unknown"} • by ${data.author || "Anonymous"}</small>
       </div>
     `);
   });
 }
 
 loadSlangs();
+
+const modal = document.getElementById("slangModal");
+
+slangList.addEventListener("click", (e) => {
+  const item = e.target.closest(".slang-item");
+  if (!item) return;
+
+  document.getElementById("modalWord").textContent = item.dataset.word;
+  document.getElementById("modalDescription").textContent = item.dataset.description;
+  document.getElementById("modalUsage").textContent = item.dataset.usage;
+  document.getElementById("modalOrigin").textContent = item.dataset.origin;
+  document.getElementById("modalBackground").textContent = item.dataset.background;
+  document.getElementById("modalAuthor").textContent =
+    "Submitted by " + item.dataset.author;
+
+  modal.classList.add("active");
+});
+
+document.getElementById("closeModal").onclick = () =>
+  modal.classList.remove("active");
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.remove("active");
+});
 
 /* ======================
    CREATE SLANG
@@ -393,3 +424,4 @@ document.querySelectorAll(".toggle-password").forEach(icon => {
     icon.classList.toggle("fa-eye-slash", hidden);
   });
 });
+
