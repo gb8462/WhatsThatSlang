@@ -1177,34 +1177,34 @@ section {
   cursor: pointer;
 }
 
-
 /* =========================
      RANDOM SLANG GENERATOR
 ========================= */
 
 #random {
-  max-width: 100%;
+  max-width: 700px;
   margin: 50px auto;
   text-align: center;
   background: #ececff;
-  padding: 32px 24px;
-  border-radius: 16px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  padding: 36px 24px;
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   transition: background 0.3s, box-shadow 0.3s;
 }
 
 .dark #random {
   background: #1f2447;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
 }
 
 #random h1 {
-  font-size: 2rem;
+  font-size: 2.4rem;
   color: #333;
   letter-spacing: 1px;
+  font-weight: 700;
   transition: color 0.3s;
 }
 
@@ -1214,9 +1214,9 @@ section {
 
 #rollSlang {
   user-select: none;
-  padding: 14px 28px;
+  padding: 16px 36px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 999px;
   border: none;
   background: #5b6cff;
@@ -1241,20 +1241,42 @@ section {
 
 #randomResult {
   margin-top: 12px;
-  padding: 16px 12px;
+  padding: 20px 16px;
   font-size: 1.2rem;
-  border-radius: 12px;
+  border-radius: 16px;
   background: #fafafa;
   border: 2px solid #eee;
-  min-height: 60px;
+  min-height: 70px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
+  gap: 6px;
   transition: background 0.3s, border-color 0.3s, color 0.3s;
+  word-break: break-word;
 }
 
 .dark #randomResult {
   background: #2b2f4b;
   border-color: #444;
   color: #e6e6f0;
+}
+
+#randomResult span.slang-word {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #141320;
+}
+
+.dark #randomResult span.slang-word {
+  color: #fff;
+}
+
+#randomResult em {
+  font-style: italic;
+  color: #555;
+}
+
+.dark #randomResult em {
+  color: #ccc;
 }
